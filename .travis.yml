@@ -14,37 +14,26 @@ cache:
 
 script: "./gradlew clean build"
 
+before_deploy:
+  - zip -r ccadui-api *
+  - mkdir -p deploy
+  - mv ccadui-api.zip deploy/ccadui-api.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY # Travis repo settings에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY # Travis repo settings에 설정된 값
+    bucket: jidong-s3 # 6-3-3에서 생성한 S3 버킷
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: public_read
+    wait-until-deployed: true
+    on:
+      repo: JD-PROJ/cca-dui-api #Github 주소
+      branch: master
+
 # CI 실행 완료시 메일로 알람
 notifications:
   email:
     recipients:
       - jiwonk9419@gmail.com
-
-before_deploy:
-  - mkdir -p before-deploy
-  - cp scripts/*.sh before-deploy/
-  - cp appspec.yml before-deploy/
-  - cp build/libs/*.jar before-deploy/
-  - cd before-deploy && zip -r before-deploy * # before-deploy로 이동 후 전체 압축
-  - cd ../ && mkdir -p deploy
-  - mv before-deploy/before-deploy.zip deploy/ccadui-api.zip
-deploy:
-  - provider: s3
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY
-    bucket: jidong-s3
-    region: ap-northeast-2
-    skip_cleanup: true
-    acl: private
-    local_dir: deploy
-    wait-until-deployed: true
-  - provider: codedeploy
-    access_key_id: $AWS_ACCESS_KEY
-    secret_access_key: $AWS_SECRET_KEY
-    bucket: jidong-s3
-    key: ccadui-api.zip
-    bundle_type: zip
-    application: ccadui # 웹 콘솔에서 등록한 코드디플로이 애플리케이션
-    deployment_group: ccadui-deploy
-    region: ap-northeast-2
-    wait-until-deployed: true
