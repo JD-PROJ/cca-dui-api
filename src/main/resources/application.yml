@@ -9,6 +9,3 @@ spring:
   profiles: local
 server:
   port: 8000
-#oauth:
-#  token:
-#    secretKey: jibabDongdongCcaduiJwtSecretKey
