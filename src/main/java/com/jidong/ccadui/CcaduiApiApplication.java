@@ -1,13 +1,18 @@
 package com.jidong.ccadui;
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 
 @SpringBootApplication
 public class CcaduiApiApplication {
+    public static final String APPLICATION_LOCATIONS = "spring.config.location="
+                + "classpath:application.yml,"
+                + "/app/config/ccadui/application-real.yml";
 
     public static void main(String[] args) {
-        SpringApplication.run(CcaduiApiApplication.class, args);
+        new SpringApplicationBuilder(CcaduiApiApplication.class)
+                .properties(APPLICATION_LOCATIONS)
+                .run(args);
     }
 
 }
