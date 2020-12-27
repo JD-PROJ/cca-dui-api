@@ -7,7 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class CcaduiApiApplication {
     public static final String APPLICATION_LOCATIONS = "spring.config.location="
                 + "classpath:application.yml,"
-                + "/app/config/ccadui/application-real.yml";
+                + "app/config/ccadui/application-real.yml"; // application-real.yml 위치
 
     public static void main(String[] args) {
         new SpringApplicationBuilder(CcaduiApiApplication.class)
