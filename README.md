@@ -5,3 +5,4 @@
 - SpringBoot 2.3.1.RELEASE
 - AWS EC2
 - AWS RDS (mySql)
+- CI/CD : AWS S3, CodeDeploy, TravisCI
