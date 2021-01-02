@@ -1,10 +1,10 @@
 package com.jidong.ccadui.controller.api;
 
-import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 import static org.springframework.boot.test.context.SpringBootTest.WebEnvironment.RANDOM_PORT;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 import org.junit.jupiter.api.Test;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
@@ -16,11 +16,16 @@ public class WebRestControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void Profile확인 () {
+    public void Profile() {
         //when
         String profile = this.restTemplate.getForObject("/profile", String.class);
 
         //then
-        assertThat(profile).isEqualTo("local");
+        assertEquals("local", profile);
+    }
+
+    @Test
+    public void DB연결확인() {
+
     }
 }

@@ -1,11 +1,32 @@
-#Test
 spring:
- profiles:
-   active: local
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+      path: /h2
+  main:
+    allow-bean-definition-overriding: true
 
-#local환경
+mybatis.mapper-locations: mybatis-mapper/**/*.xml
+mybatis:
+  type-aliases-package=com:
+    atoz_develop:
+      mybatissample:
+        model:
+#real
 ---
-spring:
-  profiles: local
+spring.profiles: set1
+spring.profiles.include: real-db
+
 server:
-  port: 8080
+  port: 8081
+
+---
+spring.profiles: set2
+spring.profiles.include: real-db
+
+server:
+  port: 8082
