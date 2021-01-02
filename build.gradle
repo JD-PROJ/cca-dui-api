@@ -43,7 +43,7 @@ dependencies {
     compile 'com.nimbusds:nimbus-jose-jwt:3.10'
     compile 'org.hibernate.validator:hibernate-validator'
     compile 'net.sf.json-lib:json-lib:1.1:jdk15'
-    compile 'net.minidev:name:json-smart:version:2.3'
+    implementation 'net.minidev:json-smart:2.2.1'
 }
 
 test {
