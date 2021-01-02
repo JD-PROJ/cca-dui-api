@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.context.annotation.Profile;
 
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 public class WebRestControllerTest {
@@ -17,7 +16,6 @@ public class WebRestControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    @Profile("local")
     public void Profile() {
         //when
         String profile = this.restTemplate.getForObject("http://localhost:8080/profile", String.class);
