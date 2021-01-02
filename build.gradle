@@ -26,12 +26,13 @@ dependencies {
     compile 'com.h2database:h2'
     runtimeOnly 'com.oracle.database.jdbc:ojdbc8'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude module: 'junit'
+    testImplementation('org.springframework.boot:spring-boot-starter-test')
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.5.1") {
+        exclude module: 'junit-platform-commons'
     }
-    testImplementation("org.junit.jupiter:junit-jupiter-api")
-    testCompile("org.junit.jupiter:junit-jupiter-params")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.5.1")
+    testRuntimeOnly("org.junit.platform:junit-platform-engine:1.5.1")
+    testRuntimeOnly("org.junit.platform:junit-platform-commons:1.5.1")
     compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.2'
     compile('org.springframework.boot:spring-boot-starter-data-jpa')
     compile 'org.springframework.boot:spring-boot-starter-jdbc'
