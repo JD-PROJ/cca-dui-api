@@ -1,22 +1,30 @@
 spring:
+  profiles:
+    active: local # 기본 환경 선택
+
+
+# local 환경
+---
+spring:
+  profiles: local
   datasource:
-    url: jdbc:h2:mem:testdb
-    username: sa
-    password:
+    data: classpath:data-h2.sql # 시작할때 실행시킬 script
+    hikari:
+      jdbc-url: jdbc:h2:mem://localhost/~/testdb;MODE=MYSQL
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+
   h2:
     console:
       enabled: true
-      path: /h2
-  main:
-    allow-bean-definition-overriding: true
 
-mybatis.mapper-locations: mybatis-mapper/**/*.xml
-mybatis:
-  type-aliases-package=com:
-    atoz_develop:
-      mybatissample:
-        model:
-#real
+# 운영 환경
 ---
 spring.profiles: set1
 spring.profiles.include: real-db

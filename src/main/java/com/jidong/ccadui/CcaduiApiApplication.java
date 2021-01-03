@@ -2,7 +2,9 @@ package com.jidong.ccadui;
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+@EnableJpaAuditing // JPA Auditing 활성화
 @SpringBootApplication
 public class CcaduiApiApplication {
     public static final String APPLICATION_LOCATIONS = "spring.config.location="

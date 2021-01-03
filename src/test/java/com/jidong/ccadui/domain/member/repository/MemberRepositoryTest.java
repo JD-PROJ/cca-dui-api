@@ -1,6 +1,8 @@
 package com.jidong.ccadui.domain.member.repository;
 
+import static java.time.LocalDateTime.now;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 import org.junit.After;
@@ -21,16 +23,15 @@ public class MemberRepositoryTest {
          테스트 메소드가 끝날때 마다 respository 전체 비우는 코드.
          메소드 단위인가?
          **/
-
         memberRepository.deleteAll();
     }
 
     @Test
-    void enitity생성후_회원정보가져오기() {
+    void create_Enitity_Test() {
         //given
         memberRepository.save(Member.builder()
-                .serviceName("kakao")
-                .serviceUserId("kakao_profile_nickname")
+                .svcNm("kakao")
+                .svcUsrId("kakao_profile_nickname")
                 .build());
 
         //when
@@ -40,9 +41,9 @@ public class MemberRepositoryTest {
         Member member = memberList.get(0);
 
         assertEquals(member.getMemNo(), 1);
-        assertEquals(member.getServiceName(), "kakao");
-        assertEquals(member.getServiceUserId(), "kakao_profile_nickname");
-
+        assertEquals(member.getSvcNm(), "kakao");
+        assertEquals(member.getSvcUsrId(), "kakao_profile_nickname");
+        assertTrue(member.getCreateDt().isBefore(now()));
     }
 
 }

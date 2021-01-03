@@ -1,3 +1,9 @@
+buildscript {
+    dependencies {
+     classpath "io.spring.gradle:dependency-management-plugin:1.0.4.RELEASE"
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.3.1.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
@@ -17,6 +23,9 @@ configurations {
 repositories {
     mavenCentral()
 }
+
+//Spring Boot Overriding SpringDataJpa가 사용하는 Hibernate의 버전만 5.2.11로 변경
+ext['hibernate.version'] = '5.2.11.Final'
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
