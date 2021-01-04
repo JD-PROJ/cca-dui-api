@@ -13,7 +13,7 @@ import com.querydsl.core.types.Path;
  * QMbMemOAuth is a Querydsl query type for MemberOAuth
  */
 @Generated("com.querydsl.codegen.EntitySerializer")
-public class QMbMemOAuth extends EntityPathBase<MbMemOAuth> {
+public class QMbMemOAuth extends EntityPathBase<MbMemOauth> {
 
     private static final long serialVersionUID = 1681604280L;
 
@@ -34,15 +34,15 @@ public class QMbMemOAuth extends EntityPathBase<MbMemOAuth> {
     public final DateTimePath<java.time.LocalDateTime> updateDt = _super.updateDt;
 
     public QMbMemOAuth(String variable) {
-        super(MbMemOAuth.class, forVariable(variable));
+        super(MbMemOauth.class, forVariable(variable));
     }
 
-    public QMbMemOAuth(Path<? extends MbMemOAuth> path) {
+    public QMbMemOAuth(Path<? extends MbMemOauth> path) {
         super(path.getType(), path.getMetadata());
     }
 
     public QMbMemOAuth(PathMetadata metadata) {
-        super(MbMemOAuth.class, metadata);
+        super(MbMemOauth.class, metadata);
     }
 
 }

@@ -5,9 +5,6 @@ import static com.jidong.ccadui.domain.member.repository.QMbMemOAuth.mbMemOAuth;
 import com.jidong.ccadui.domain.member.service.MemberOAuth;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.querydsl.jpa.sql.JPASQLQuery;
-import java.time.LocalDateTime;
-import java.util.Date;
 import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 
@@ -32,7 +29,7 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
 
     @Override
     public void insertMember(MemberOAuth memberOAuth) {
-        MbMemOAuth mbMemOAuth = MbMemOAuth.builder()
+        MbMemOauth mbMemOAuth = MbMemOauth.builder()
                 .svcNm(memberOAuth.getServiceName())
                 .svcNm(memberOAuth.getServiceUserId())
                 .build();

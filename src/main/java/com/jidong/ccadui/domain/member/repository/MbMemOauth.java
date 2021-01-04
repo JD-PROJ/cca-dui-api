@@ -6,6 +6,7 @@ import com.jidong.ccadui.domain.BaseTimeEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -15,9 +16,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class MbMemOAuth extends BaseTimeEntity {
+public class MbMemOauth extends BaseTimeEntity {
 
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "MEM_NO")
     private Long memNo;
 
@@ -28,7 +30,7 @@ public class MbMemOAuth extends BaseTimeEntity {
     private String svcUsrId;
 
     @Builder
-    public MbMemOAuth(long memNo, String svcNm, String svcUsrId) {
+    public MbMemOauth(long memNo, String svcNm, String svcUsrId) {
         this.memNo = memNo;
         this.svcNm = svcNm;
         this.svcUsrId = svcUsrId;

@@ -18,14 +18,14 @@ public class MemberRepositorySupport extends QuerydslRepositorySupport {
         this.queryFactory = queryFactory;
     }
 
-    public MbMemOAuth getMemberInfo(long memberNo) {
+    public MbMemOauth getMemberInfo(long memberNo) {
          return queryFactory
                .selectFrom(mbMemOAuth)
                .where(mbMemOAuth.memNo.eq(memberNo))
                .fetchOne();
     }
 
-    public void  insertMember(com.jidong.ccadui.domain.member.repository.MbMemOAuth mbMemOAuth) {
+    public void  insertMember(MbMemOauth mbMemOAuth) {
 
     }
 }

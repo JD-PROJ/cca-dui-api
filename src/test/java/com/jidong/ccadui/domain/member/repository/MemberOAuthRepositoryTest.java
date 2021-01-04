@@ -32,16 +32,16 @@ public class MemberOAuthRepositoryTest {
     @Test
     void create_Enitity_Test() {
         //given
-        memberRepository.save(MbMemOAuth.builder()
+        memberRepository.save(MbMemOauth.builder()
                 .svcNm("kakao")
                 .svcUsrId("kakao_profile_nickname")
                 .build());
 
         //when
-        List<MbMemOAuth> mbMemOAuthList = memberRepository.findAll();
+        List<MbMemOauth> mbMemOauthList = memberRepository.findAll();
 
         //then
-        MbMemOAuth mbMemOAuth = mbMemOAuthList.get(0);
+        MbMemOauth mbMemOAuth = mbMemOauthList.get(0);
 
         assertEquals(mbMemOAuth.getMemNo(), 1);
         assertEquals(mbMemOAuth.getSvcNm(), "kakao");
@@ -53,7 +53,7 @@ public class MemberOAuthRepositoryTest {
     @DisplayName("queryDsl 적용 테스트")
     void queryDsl_Test() {
         //given
-        memberRepository.save(MbMemOAuth.builder()
+        memberRepository.save(MbMemOauth.builder()
                 .svcNm("kakao2")
                 .svcUsrId("kakao_profile_nickname2")
                 .build());
