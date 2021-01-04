@@ -15,21 +15,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class Member extends BaseTimeEntity {
+public class MbMemOAuth extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue(strategy = IDENTITY)
     @Column(name = "MEM_NO")
     private Long memNo;
 
     @Column(name="SVC_NM")
     private String svcNm;
 
-    @Column(name="SVC_USER_ID", nullable = false)
+    @Column(name="SVC_USER_ID")
     private String svcUsrId;
 
     @Builder
-    public Member(long memNo, String svcNm, String svcUsrId) {
+    public MbMemOAuth(long memNo, String svcNm, String svcUsrId) {
         this.memNo = memNo;
         this.svcNm = svcNm;
         this.svcUsrId = svcUsrId;
