@@ -1,6 +1,6 @@
 package com.jidong.ccadui.domain.member.repository;
 
-import static com.jidong.ccadui.domain.member.repository.QMbMemOAuth.mbMemOAuth;
+import static com.jidong.ccadui.domain.member.repository.QMbMemOauth.mbMemOauth;
 
 import com.jidong.ccadui.domain.member.service.MemberOAuth;
 import com.querydsl.jpa.JPQLQueryFactory;
@@ -20,8 +20,8 @@ public class MemberRepositorySupport extends QuerydslRepositorySupport {
 
     public MbMemOauth getMemberInfo(long memberNo) {
          return queryFactory
-               .selectFrom(mbMemOAuth)
-               .where(mbMemOAuth.memNo.eq(memberNo))
+               .selectFrom(mbMemOauth)
+               .where(mbMemOauth.memNo.eq(memberNo))
                .fetchOne();
     }
 

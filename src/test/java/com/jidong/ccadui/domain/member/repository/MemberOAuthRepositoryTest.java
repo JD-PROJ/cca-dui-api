@@ -49,7 +49,7 @@ public class MemberOAuthRepositoryTest {
         assertTrue(mbMemOAuth.getCreateDt().isBefore(now()));
     }
 
-    @Test
+   /* @Test
     @DisplayName("queryDsl 적용 테스트")
     void queryDsl_Test() {
         //given
@@ -79,5 +79,5 @@ public class MemberOAuthRepositoryTest {
 
         //then
         memberRepository.insertMember(memberOAuth);
-    }
+    }*/
 }

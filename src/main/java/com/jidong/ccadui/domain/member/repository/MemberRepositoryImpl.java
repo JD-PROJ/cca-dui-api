@@ -1,6 +1,6 @@
 package com.jidong.ccadui.domain.member.repository;
 
-import static com.jidong.ccadui.domain.member.repository.QMbMemOAuth.mbMemOAuth;
+import static com.jidong.ccadui.domain.member.repository.QMbMemOauth.mbMemOauth;
 
 import com.jidong.ccadui.domain.member.service.MemberOAuth;
 import com.querydsl.core.types.Projections;
@@ -19,11 +19,11 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
     public MemberOAuth getMemberInfo(long memberNo) {
         return queryFactory
                 .select(Projections.constructor(MemberOAuth.class,
-                        mbMemOAuth.memNo,
-                        mbMemOAuth.svcNm,
-                        mbMemOAuth.svcUsrId))
-                .from(mbMemOAuth)
-                .where(mbMemOAuth.memNo.eq(memberNo))
+                        mbMemOauth.memNo,
+                        mbMemOauth.svcNm,
+                        mbMemOauth.svcUsrId))
+                .from(mbMemOauth)
+                .where(mbMemOauth.memNo.eq(memberNo))
                 .fetchOne();
     }
 

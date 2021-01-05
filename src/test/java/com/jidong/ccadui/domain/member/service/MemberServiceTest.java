@@ -19,7 +19,7 @@ class MemberServiceTest {
     MemberRepository memberRepository;
 
     private MemberOAuth memberOAuth;
-
+    /*
     @Test
     @DisplayName("queryDsl로 DTO 변환한 결과 제대로 불러오는지 테스트")
     void get_DTO_Test() {
@@ -49,5 +49,5 @@ class MemberServiceTest {
         MemberOAuth memberOAuth2 = memberService.getMemberInfo(2);
         assertEquals(memberOAuth2.getServiceName(), "kakao");
         assertEquals(memberOAuth2.getServiceUserId(), "jibab");
-    }
+    }*/
 }
