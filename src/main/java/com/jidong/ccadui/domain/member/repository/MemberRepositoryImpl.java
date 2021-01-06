@@ -30,8 +30,9 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
     @Override
     public void insertMember(MemberOAuth memberOAuth) {
         MbMemOauth mbMemOAuth = MbMemOauth.builder()
+                .memNo(memberOAuth.getMemberNo())
                 .svcNm(memberOAuth.getServiceName())
-                .svcNm(memberOAuth.getServiceUserId())
+                .svcUsrId(memberOAuth.getServiceUserId())
                 .build();
 
         entityManager.persist(mbMemOAuth);

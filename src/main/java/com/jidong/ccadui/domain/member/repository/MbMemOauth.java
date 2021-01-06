@@ -1,12 +1,9 @@
 package com.jidong.ccadui.domain.member.repository;
 
-import static javax.persistence.GenerationType.IDENTITY;
-
 import com.jidong.ccadui.domain.BaseTimeEntity;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -16,10 +13,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
 @Entity
-public class MbMemOauth extends BaseTimeEntity {
+public class MbMemOauth extends BaseTimeEntity implements Serializable {
+
+    private static final long serialVersionUID = -7548773257794753692L;
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "MEM_NO")
     private Long memNo;
 
