@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class MemberServiceTest {
 
     @Autowired
@@ -18,36 +18,37 @@ class MemberServiceTest {
     @Autowired
     MemberRepository memberRepository;
 
-    private MemberOAuth memberOAuth;
-    /*
     @Test
     @DisplayName("queryDsl로 DTO 변환한 결과 제대로 불러오는지 테스트")
     void get_DTO_Test() {
 
         //given
         memberRepository.save(MbMemOauth.builder()
-                .svcNm("kakao2")
+                .memNo(2000)
+                .svcNm("SERVICE_TEST")
                 .svcUsrId("kakao_profile_nickname2")
                 .build());
 
-        memberOAuth = memberService.getMemberInfo(1L);
+        MemberOAuth memberOAuth = memberService.getMemberInfo(2000);
 
-        assertEquals(memberOAuth.getServiceName(), "kakao2");
+        assertEquals(memberOAuth.getServiceName(), "SERVICE_TEST");
         assertEquals(memberOAuth.getServiceUserId(), "kakao_profile_nickname2");
     }
 
     @Test
     void insert_Member_Test() {
         //given
-        MemberOAuth memberOAuth = new MemberOAuth();
-        memberOAuth.setMemberNo(2L);
-        memberOAuth.setServiceName("kakao");
-        memberOAuth.setServiceUserId("jibab");
-
-        memberService.insertMember(memberOAuth);
-
-        MemberOAuth memberOAuth2 = memberService.getMemberInfo(2);
-        assertEquals(memberOAuth2.getServiceName(), "kakao");
-        assertEquals(memberOAuth2.getServiceUserId(), "jibab");
-    }*/
+//        MemberOAuth memberOAuth = new MemberOAuth();
+//        memberOAuth.setMemberNo(2);
+//        memberOAuth.setServiceName("kakao");
+//        memberOAuth.setServiceUserId("jibab");
+//
+//        //then
+//        memberService.insertMember(memberOAuth);
+//
+//        //when
+//        MemberOAuth memberOAuth2 = memberService.getMemberInfo(2);
+//        assertEquals(memberOAuth2.getServiceName(), "kakao");
+//        assertEquals(memberOAuth2.getServiceUserId(), "jibab");
+    }
 }

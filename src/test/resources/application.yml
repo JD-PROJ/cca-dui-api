@@ -3,12 +3,17 @@ spring:
   profiles:
     active: local # 기본 환경 선택
   datasource:
+    data: classpath:data-h2.sql # 시작할때 실행시킬 script
     hikari:
       jdbc-url: jdbc:h2:mem://localhost/~/testdb;MODE=MYSQL
   jpa:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create-drop
+
 # local 환경
 ---
 spring:

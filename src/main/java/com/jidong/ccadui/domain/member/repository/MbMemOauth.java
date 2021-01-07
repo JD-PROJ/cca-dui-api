@@ -19,7 +19,7 @@ public class MbMemOauth extends BaseTimeEntity implements Serializable {
 
     @Id
     @Column(name = "MEM_NO")
-    private Long memNo;
+    private long memNo;
 
     @Column(name="SVC_NM")
     private String svcNm;

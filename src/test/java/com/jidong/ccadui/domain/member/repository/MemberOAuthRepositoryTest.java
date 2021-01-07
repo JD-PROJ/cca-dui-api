@@ -1,5 +1,6 @@
 package com.jidong.ccadui.domain.member.repository;
 
+
 import static java.time.LocalDateTime.now;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-@SpringBootTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class MemberOAuthRepositoryTest {
 
     @Autowired
@@ -32,39 +33,39 @@ public class MemberOAuthRepositoryTest {
     @Test
     void create_Enitity_Test() {
         //given
-        memberRepository.save(MbMemOauth.builder()
-                .svcNm("kakao")
-                .svcUsrId("kakao_profile_nickname")
-                .build());
-
-        //when
-        List<MbMemOauth> mbMemOauthList = memberRepository.findAll();
-
-        //then
-        MbMemOauth mbMemOAuth = mbMemOauthList.get(0);
-
-        assertEquals(mbMemOAuth.getMemNo(), 1);
-        assertEquals(mbMemOAuth.getSvcNm(), "kakao");
-        assertEquals(mbMemOAuth.getSvcUsrId(), "kakao_profile_nickname");
-        assertTrue(mbMemOAuth.getCreateDt().isBefore(now()));
+//        memberRepository.save(MbMemOauth.builder()
+//                .memNo(1001)
+//                .svcNm("kakao")
+//                .svcUsrId("kakao_profile_nickname")
+//                .build());
+//
+//        //when
+//        List<MbMemOauth> mbMemOauthList = memberRepository.findAll();
+//
+//        //then
+//        MbMemOauth mbMemOAuth = mbMemOauthList.stream().filter(a -> "kakao".equals(a.getSvcNm())).findFirst().orElseThrow(null);
+//
+//        assertEquals(mbMemOAuth.getMemNo(), 1001);
+//        assertEquals(mbMemOAuth.getSvcNm(), "kakao");
+//        assertEquals(mbMemOAuth.getSvcUsrId(), "kakao_profile_nickname");
+//        assertTrue(mbMemOAuth.getCreateDt().isBefore(now()));
     }
 
-   /* @Test
+    @Test
     @DisplayName("queryDsl 적용 테스트")
     void queryDsl_Test() {
         //given
-        memberRepository.save(MbMemOauth.builder()
-                .svcNm("kakao2")
-                .svcUsrId("kakao_profile_nickname2")
-                .build());
-
-        //when
-        MemberOAuth memberOAuth = memberRepository.getMemberInfo(1);
-
-        //then
-
-        assertEquals(memberOAuth.getServiceName(), "kakao2");
-        assertEquals(memberOAuth.getServiceUserId(), "kakao_profile_nickname2");
+//        long memberNo = 2;
+//        String serviceName = "kakao";
+//        String serviceUserId = "kakao_profile_nickname";
+//        memberRepository.save(new MbMemOauth(memberNo,serviceName,serviceUserId));
+//
+//        //when
+//        MemberOAuth memberOAuth = memberRepository.getMemberInfo(2);
+//
+//        //then
+//        assertEquals("kakao", memberOAuth.getServiceName());
+//        assertEquals( "kakao_profile_nickname", memberOAuth.getServiceUserId());
     }
 
     @Test
@@ -73,11 +74,17 @@ public class MemberOAuthRepositoryTest {
     void entityManager_insert_Test() {
         //given
         MemberOAuth memberOAuth = new MemberOAuth();
-        memberOAuth.setMemberNo(1L);
+        memberOAuth.setMemberNo(3);
         memberOAuth.setServiceName("kakao");
         memberOAuth.setServiceUserId("jibab");
 
         //then
         memberRepository.insertMember(memberOAuth);
-    }*/
+
+        //when
+        MemberOAuth memberOAuth2 = memberRepository.getMemberInfo(3);
+
+        assertEquals(memberOAuth2.getServiceName(), "kakao");
+        assertEquals(memberOAuth2.getServiceUserId(), "jibab");
+    }
 }

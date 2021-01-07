@@ -20,7 +20,7 @@ public class WebRestControllerTest {
         String profile = this.testRestTemplate.getForObject("/profile", String.class);
 
         //then
-//        assertEquals("local", profile);
+        assertEquals("local", profile);
     }
 
     @Test
