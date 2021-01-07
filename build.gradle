@@ -91,10 +91,6 @@ tasks.withType(JavaCompile) {
     options.annotationProcessorGeneratedSourcesDirectory = file(querydslSrcDir)
 }
 
-clean.doLast {
-    file(generated).deleteDir()
-}
-
 test {
     useJUnitPlatform()
 }
