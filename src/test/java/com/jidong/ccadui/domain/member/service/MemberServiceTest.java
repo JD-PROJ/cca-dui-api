@@ -38,17 +38,17 @@ class MemberServiceTest {
     @Test
     void insert_Member_Test() {
         //given
-//        MemberOAuth memberOAuth = new MemberOAuth();
-//        memberOAuth.setMemberNo(2);
-//        memberOAuth.setServiceName("kakao");
-//        memberOAuth.setServiceUserId("jibab");
-//
-//        //then
-//        memberService.insertMember(memberOAuth);
-//
-//        //when
-//        MemberOAuth memberOAuth2 = memberService.getMemberInfo(2);
-//        assertEquals(memberOAuth2.getServiceName(), "kakao");
-//        assertEquals(memberOAuth2.getServiceUserId(), "jibab");
+        MemberOAuth memberOAuth = new MemberOAuth();
+        memberOAuth.setMemberNo(2001);
+        memberOAuth.setServiceName("kakao");
+        memberOAuth.setServiceUserId("jibab");
+
+        //then
+        memberService.insertMember(memberOAuth);
+
+        //when
+        MemberOAuth memberOAuth2 = memberService.getMemberInfo(2001);
+        assertEquals(memberOAuth2.getServiceName(), "kakao");
+        assertEquals(memberOAuth2.getServiceUserId(), "jibab");
     }
 }
