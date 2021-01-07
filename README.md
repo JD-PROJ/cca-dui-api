@@ -2,6 +2,7 @@
 바쁜 현대인싸를 위한 일정관리툴
 
 
+- JAVA : 1.8
 - SpringBoot 2.3.1.RELEASE
 - AWS EC2
 - AWS RDS (mySql)
