@@ -10,17 +10,20 @@ import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @Slf4j
-@Controller
+@RestController
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class KakaoLoginController {
@@ -35,7 +38,7 @@ public class KakaoLoginController {
     @NotNull
     private final MemberService memberService;
 
-    @GetMapping(value = "/kakao/login")
+    @RequestMapping(method = RequestMethod.GET, value = "/kakao/login",  produces = MediaType.TEXT_PLAIN_VALUE)
     @ApiOperation("카카오 로그인")
     public String kakaoLogin(@RequestParam String accessToken) {
         // accessToken으로 JWT token 생성 및 전달
