@@ -25,7 +25,7 @@ public class MemberRepositorySupport extends QuerydslRepositorySupport {
                .fetchOne();
     }
 
-    public void  insertMember(MbMemOauth mbMemOAuth) {
+    public void insertMember(MemberOAuth memberOAuth) {
 
     }
 }

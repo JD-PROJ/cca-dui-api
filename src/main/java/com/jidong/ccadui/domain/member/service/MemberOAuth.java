@@ -2,10 +2,11 @@ package com.jidong.ccadui.domain.member.service;
 
 import java.util.Date;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Data
-@RequiredArgsConstructor
+@NoArgsConstructor
 public class MemberOAuth {
     private long memberNo;
     private String serviceName;
