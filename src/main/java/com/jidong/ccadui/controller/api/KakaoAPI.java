@@ -1,10 +1,10 @@
 package com.jidong.ccadui.controller.api;
 
 import java.io.IOException;
-import java.net.HttpURLConnection;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -34,8 +34,13 @@ public class KakaoAPI {
             System.out.println("response getStatusLine : " + response.getStatusLine());
             System.out.println("response getContent : " + entity.toString());
 
+            String responseCode = Integer.toString(response.getStatusLine().getStatusCode());
             String jsonResponse = EntityUtils.toString(entity, "UTF-8");
-            if (response.getStatusLine().getStatusCode() == HttpURLConnection.HTTP_OK) {
+
+            if (KakaoAPIResultEnum.SUCCESS.equalsCode(responseCode)
+                    || KakaoAPIResultEnum.TOKEN_EXPIRED.equalsCode(responseCode)
+                    || KakaoAPIResultEnum.NOT_VALID_TOKEN.equalsCode(responseCode)
+                    || KakaoAPIResultEnum.KAKAO_ERROR.equalsCode(responseCode)) {
                 result = JSONObject.fromString(jsonResponse);
             }
         } catch (IOException e) {

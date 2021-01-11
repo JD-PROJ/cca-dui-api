@@ -39,7 +39,7 @@ public class KakaoLoginController {
     private final MemberService memberService;
 
     @RequestMapping(method = RequestMethod.GET, value = "/kakao/login",  produces = MediaType.TEXT_PLAIN_VALUE)
-    @ApiOperation("카카오 로그인")
+    @ApiOperation("카카오 로그인을 위한 JWT Token 생성")
     public String kakaoLogin(@RequestParam String accessToken) {
         // accessToken으로 JWT token 생성 및 전달
 
@@ -51,26 +51,32 @@ public class KakaoLoginController {
             return "";
         }
 
-        //TODO : 회원번호는 다른 유니크한걸로 변경
-        long memberNo = jsonObject.optLong("id");
+        if(jsonObject==null) {
+            //TODO:
+        }
+
+        // 카카오 회원 고유 ID
+        String serviceUserId = jsonObject.optString("id");
 
         JSONObject kakaoAccount = jsonObject.optJSONObject("kakao_account");
-        String nickname = "";
+        String nickname;
+
+        // 카카오 회원 닉네임
         if (kakaoAccount != null) {
             nickname = kakaoAccount.optJSONObject("profile").optString("nickName");
         } else {
-            nickname = "ccadui" + memberNo;
+            nickname = "ccadui" + serviceUserId;
         }
 
         //   2. 이미 회원인지 판별
-        MemberOAuth member = memberService.getMemberInfo(memberNo);
+        MemberOAuth member = memberService.getMemberInfoByServiceUserId(serviceUserId);
         String jwt;
         if (member == null) {
             MemberOAuth memberOAuth = new MemberOAuth();
 
-            memberOAuth.setMemberNo(memberNo);
             memberOAuth.setServiceName("kakao");
-            memberOAuth.setServiceUserId(nickname);
+            memberOAuth.setServiceUserId(serviceUserId);
+            memberOAuth.setServiceName(nickname);
 
             memberService.insertMember(memberOAuth);
 

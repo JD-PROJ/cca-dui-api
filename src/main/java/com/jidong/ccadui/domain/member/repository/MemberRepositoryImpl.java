@@ -21,9 +21,23 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
                 .select(Projections.constructor(MemberOAuth.class,
                         mbMemOauth.memNo,
                         mbMemOauth.svcNm,
-                        mbMemOauth.svcUsrId))
+                        mbMemOauth.svcUsrId,
+                        mbMemOauth.svcUsrNm))
                 .from(mbMemOauth)
                 .where(mbMemOauth.memNo.eq(memberNo))
+                .fetchOne();
+    }
+
+    @Override
+    public MemberOAuth getMemberInfoByServiceUserId(String serviceUserId) {
+        return queryFactory
+                .select(Projections.constructor(MemberOAuth.class,
+                        mbMemOauth.memNo,
+                        mbMemOauth.svcNm,
+                        mbMemOauth.svcUsrId,
+                        mbMemOauth.svcUsrNm))
+                .from(mbMemOauth)
+                .where(mbMemOauth.svcUsrId.eq(serviceUserId))
                 .fetchOne();
     }
 

@@ -19,6 +19,11 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
+    public MemberOAuth getMemberInfoByServiceUserId(String serviceUserId) {
+        return memberRepository.getMemberInfoByServiceUserId(serviceUserId);
+    }
+
+    @Override
     @Transactional
     public void insertMember(MemberOAuth memberOAuth) {
         memberRepository.insertMember(memberOAuth);

@@ -4,6 +4,8 @@ import com.jidong.ccadui.domain.BaseTimeEntity;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -19,6 +21,7 @@ public class MbMemOauth extends BaseTimeEntity implements Serializable {
 
     @Id
     @Column(name = "MEM_NO")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long memNo;
 
     @Column(name="SVC_NM")
@@ -27,10 +30,14 @@ public class MbMemOauth extends BaseTimeEntity implements Serializable {
     @Column(name="SVC_USER_ID")
     private String svcUsrId;
 
+    @Column(name="SVC_USER_NM")
+    private String svcUsrNm;
+
     @Builder
-    public MbMemOauth(long memNo, String svcNm, String svcUsrId) {
+    public MbMemOauth(long memNo, String svcNm, String svcUsrId, String svcUsrNm) {
         this.memNo = memNo;
         this.svcNm = svcNm;
         this.svcUsrId = svcUsrId;
+        this.svcUsrNm = svcUsrNm;
     }
 }

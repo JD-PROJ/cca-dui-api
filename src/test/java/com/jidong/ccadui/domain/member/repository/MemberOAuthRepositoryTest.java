@@ -34,7 +34,6 @@ public class MemberOAuthRepositoryTest {
     void create_Enitity_Test() {
         //given
         memberRepository.save(MbMemOauth.builder()
-                .memNo(1001)
                 .svcNm("kakao")
                 .svcUsrId("kakao_profile_nickname")
                 .build());
@@ -43,9 +42,9 @@ public class MemberOAuthRepositoryTest {
         List<MbMemOauth> mbMemOauthList = memberRepository.findAll();
 
         //then
-        MbMemOauth mbMemOAuth = mbMemOauthList.stream().filter(a -> a.getMemNo()==1001).findFirst().orElseThrow(null);
+        MbMemOauth mbMemOAuth = mbMemOauthList.stream().filter(a -> "kakao".equals(a.getSvcNm())).findFirst().orElseThrow(null);
 
-        assertEquals(mbMemOAuth.getMemNo(), 1001);
+        assertEquals(mbMemOAuth.getMemNo(), 3);
         assertEquals(mbMemOAuth.getSvcNm(), "kakao");
         assertEquals(mbMemOAuth.getSvcUsrId(), "kakao_profile_nickname");
         assertTrue(mbMemOAuth.getCreateDt().isBefore(now()));
@@ -55,17 +54,18 @@ public class MemberOAuthRepositoryTest {
     @DisplayName("queryDsl 적용 테스트")
     void queryDsl_Test() {
         //given
-        long memberNo = 2;
-        String serviceName = "kakao";
-        String serviceUserId = "kakao_profile_nickname";
-        memberRepository.save(new MbMemOauth(memberNo,serviceName,serviceUserId));
+        long memberNo = 1;
+        String serviceName = "kakao2";
+        String serviceUserId = "kakao_profile_nickname2";
+        String serviceUserName = "nickname";
+        memberRepository.save(new MbMemOauth(memberNo,serviceName,serviceUserId, serviceUserName));
 
         //when
-        MemberOAuth memberOAuth = memberRepository.getMemberInfo(2);
+        MemberOAuth memberOAuth = memberRepository.getMemberInfo(1);
 
         //then
-        assertEquals("kakao", memberOAuth.getServiceName());
-        assertEquals( "kakao_profile_nickname", memberOAuth.getServiceUserId());
+        assertEquals("kakao2", memberOAuth.getServiceName());
+        assertEquals( "kakao_profile_nickname2", memberOAuth.getServiceUserId());
     }
 
     @Test
@@ -74,7 +74,6 @@ public class MemberOAuthRepositoryTest {
     void entityManager_insert_Test() {
         //given
         MemberOAuth memberOAuth = new MemberOAuth();
-        memberOAuth.setMemberNo(3);
         memberOAuth.setServiceName("kakao");
         memberOAuth.setServiceUserId("jibab");
 
@@ -82,7 +81,7 @@ public class MemberOAuthRepositoryTest {
         memberRepository.insertMember(memberOAuth);
 
         //when
-        MemberOAuth memberOAuth2 = memberRepository.getMemberInfo(3);
+        MemberOAuth memberOAuth2 = memberRepository.getMemberInfo(4);
 
         assertEquals(memberOAuth2.getServiceName(), "kakao");
         assertEquals(memberOAuth2.getServiceUserId(), "jibab");

@@ -24,31 +24,31 @@ class MemberServiceTest {
 
         //given
         memberRepository.save(MbMemOauth.builder()
-                .memNo(2000)
                 .svcNm("SERVICE_TEST")
-                .svcUsrId("kakao_profile_nickname2")
+                .svcUsrId("kakao_id2")
+                .svcUsrNm("nickname")
                 .build());
 
-        MemberOAuth memberOAuth = memberService.getMemberInfo(2000);
+        MemberOAuth memberOAuth = memberService.getMemberInfoByServiceUserId("kakao_id2");
 
         assertEquals(memberOAuth.getServiceName(), "SERVICE_TEST");
-        assertEquals(memberOAuth.getServiceUserId(), "kakao_profile_nickname2");
+        assertEquals(memberOAuth.getServiceUserId(), "kakao_id2");
     }
 
     @Test
     void insert_Member_Test() {
         //given
         MemberOAuth memberOAuth = new MemberOAuth();
-        memberOAuth.setMemberNo(2001);
         memberOAuth.setServiceName("kakao");
-        memberOAuth.setServiceUserId("jibab");
+        memberOAuth.setServiceUserId("123456");
+        memberOAuth.setServiceUserName("jibab");
 
         //then
         memberService.insertMember(memberOAuth);
 
         //when
-        MemberOAuth memberOAuth2 = memberService.getMemberInfo(2001);
+        MemberOAuth memberOAuth2 = memberService.getMemberInfoByServiceUserId("123456");
         assertEquals(memberOAuth2.getServiceName(), "kakao");
-        assertEquals(memberOAuth2.getServiceUserId(), "jibab");
+        assertEquals(memberOAuth2.getServiceUserId(), "123456");
     }
 }

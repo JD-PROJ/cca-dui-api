@@ -30,6 +30,8 @@ public class QMbMemOauth extends EntityPathBase<MbMemOauth> {
 
     public final StringPath svcUsrId = createString("svcUsrId");
 
+    public final StringPath svcUsrNm = createString("svcUsrNm");
+
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updateDt = _super.updateDt;
 
