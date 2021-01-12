@@ -1,10 +1,10 @@
 package com.jidong.ccadui.controller.api;
 
+import com.jidong.ccadui.controller.api.dto.KakaoLoginResultEnum;
 import java.io.IOException;
 import net.sf.json.JSONObject;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
-import org.apache.http.HttpStatus;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.HttpClientBuilder;
@@ -37,10 +37,10 @@ public class KakaoAPI {
             String responseCode = Integer.toString(response.getStatusLine().getStatusCode());
             String jsonResponse = EntityUtils.toString(entity, "UTF-8");
 
-            if (KakaoAPIResultEnum.SUCCESS.equalsCode(responseCode)
-                    || KakaoAPIResultEnum.TOKEN_EXPIRED.equalsCode(responseCode)
-                    || KakaoAPIResultEnum.NOT_VALID_TOKEN.equalsCode(responseCode)
-                    || KakaoAPIResultEnum.KAKAO_ERROR.equalsCode(responseCode)) {
+            if (KakaoLoginResultEnum.SUCCESS.equalsCode(responseCode)
+                    || KakaoLoginResultEnum.TOKEN_EXPIRED.equalsCode(responseCode)
+                    || KakaoLoginResultEnum.NOT_VALID_TOKEN.equalsCode(responseCode)
+                    || KakaoLoginResultEnum.KAKAO_ERROR.equalsCode(responseCode)) {
                 result = JSONObject.fromString(jsonResponse);
             }
         } catch (IOException e) {

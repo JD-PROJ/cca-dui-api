@@ -1,5 +1,7 @@
 package com.jidong.ccadui.controller.api;
 
+import com.jidong.ccadui.controller.api.dto.KakaoLoginResultEnum;
+import com.jidong.ccadui.controller.api.dto.KakaoLoginResultV1;
 import com.jidong.ccadui.domain.member.service.MemberOAuth;
 import com.jidong.ccadui.domain.member.service.MemberService;
 import com.jidong.ccadui.jwt.JwtService;
@@ -12,9 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,7 +40,7 @@ public class KakaoLoginController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/kakao/login",  produces = MediaType.TEXT_PLAIN_VALUE)
     @ApiOperation("카카오 로그인을 위한 JWT Token 생성")
-    public String kakaoLogin(@RequestParam String accessToken) {
+    public KakaoLoginResultV1 kakaoLogin(@RequestParam String accessToken) {
         // accessToken으로 JWT token 생성 및 전달
 
         // 1. 토큰이 있으면 kakao User Info 를 가지고 옴.
@@ -48,51 +48,52 @@ public class KakaoLoginController {
         if(!StringUtils.isEmpty(accessToken)) {
            jsonObject = kakaoAPI.getKaKaoUserInfo(accessToken);
         } else {
-            return "";
+            return new KakaoLoginResultV1(KakaoLoginResultEnum.BAT_REQUEST_ERROR);
         }
 
-        if(jsonObject==null) {
-            //TODO:
-        }
-
-        // 카카오 회원 고유 ID
-        String serviceUserId = jsonObject.optString("id");
-
-        JSONObject kakaoAccount = jsonObject.optJSONObject("kakao_account");
-        String nickname;
-
-        // 카카오 회원 닉네임
-        if (kakaoAccount != null) {
-            nickname = kakaoAccount.optJSONObject("profile").optString("nickName");
-        } else {
-            nickname = "ccadui" + serviceUserId;
-        }
-
-        //   2. 이미 회원인지 판별
-        MemberOAuth member = memberService.getMemberInfoByServiceUserId(serviceUserId);
         String jwt;
-        if (member == null) {
-            MemberOAuth memberOAuth = new MemberOAuth();
+        String apiResultCode = jsonObject.optString("code");
+        if (KakaoLoginResultEnum.SUCCESS.equalsCode(apiResultCode)) {
+            // 카카오 회원 고유 ID
+            String serviceUserId = jsonObject.optString("id");
 
-            memberOAuth.setServiceName("kakao");
-            memberOAuth.setServiceUserId(serviceUserId);
-            memberOAuth.setServiceName(nickname);
+            JSONObject kakaoAccount = jsonObject.optJSONObject("kakao_account");
+            String nickname;
 
-            memberService.insertMember(memberOAuth);
+            // 카카오 회원 닉네임
+            if (kakaoAccount != null) {
+                nickname = kakaoAccount.optJSONObject("profile").optString("nickName");
+            } else {
+                nickname = "ccadui" + serviceUserId;
+            }
 
-            // JWT token 생성 및 전달
-            jwt = jwtService.create(
-                    "user", memberOAuth, "user"
-            );
+            //   3. 이미 회원인지 판별
+            MemberOAuth member = memberService.getMemberInfoByServiceUserId(serviceUserId);
+            if (member == null) {
+                MemberOAuth memberOAuth = new MemberOAuth();
 
+                memberOAuth.setServiceName("kakao");
+                memberOAuth.setServiceUserId(serviceUserId);
+                memberOAuth.setServiceName(nickname);
+
+                memberService.insertMember(memberOAuth);
+
+                // JWT token 생성 및 전달
+                jwt = jwtService.create(
+                        "user", memberOAuth, "user"
+                );
+
+            } else {
+                // JWT token 생성 및 전달
+                jwt = jwtService.create(
+                        "user", member, "user"
+                );
+            }
         } else {
-            // JWT token 생성 및 전달
-            jwt = jwtService.create(
-                    "user", member, "user"
-            );
+            return new KakaoLoginResultV1(KakaoLoginResultEnum.findByCode(apiResultCode));
         }
 
-        return jwt;
+        return new KakaoLoginResultV1(KakaoLoginResultEnum.SUCCESS, jwt);
     }
 
     @PostMapping("/login/token")
