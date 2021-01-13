@@ -24,7 +24,7 @@ public class JwtService {
 //       @Value("${oauth.token.secretKey}")
        private final String secretKey = "jibabDongdongCcaduiJwtSecretKey";
 
-       public <T> String create(String key, T data, String subject) {
+       public <T> String create(String key, T data, String subject) throws Exception{
       		Date expireTime = new Date();
       		expireTime.setTime(expireTime.getTime() + 1000 * 60 * 60); // 1시간
 

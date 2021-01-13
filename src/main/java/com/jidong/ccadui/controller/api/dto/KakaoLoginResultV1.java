@@ -1,9 +1,13 @@
 package com.jidong.ccadui.controller.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class KakaoLoginResultV1 {
     @ApiModelProperty("결과 코드")
     private String resultCode;
