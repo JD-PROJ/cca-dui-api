@@ -101,6 +101,10 @@ task generateQueryDSL(type: JavaCompile, group: 'build') {
     destinationDir = file('./src/main/generated')
 }
 
+// Gradle clean을 하게되면 생성된 generated 아래 Q클래스 파일이 삭제된다
+clean {
+    delete file('src/main/generated') // 인텔리제이 큐 클래스 경로
+}
 
 test {
     useJUnitPlatform()

@@ -1,19 +1,19 @@
 package com.jidong.ccadui.domain.member.service;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Data
-@NoArgsConstructor
+@RequiredArgsConstructor
 public class MemberOAuth {
     private long memberNo;
     private String serviceName;
     private String serviceUserId;
     private String serviceUserName;
-    private Date createDate;
-    private Date updateDate;
+    private LocalDateTime createDate;
+    private LocalDateTime updateDate;
 
     public MemberOAuth(long memberNo, String serviceName, String serviceUserId, String serviceUserName) {
         this.memberNo = memberNo;

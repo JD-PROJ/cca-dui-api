@@ -65,7 +65,7 @@ public class JwtService {
     public Map<String, Object> get(String key) {
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
                 .getRequest();
-        String jwt = request.getParameter("access_token");
+        String jwt = request.getParameter("accessToken");
         Jws<Claims> claims = null;
         try {
             claims = Jwts.parser().setSigningKey(secretKey.getBytes("UTF-8")).parseClaimsJws(jwt);

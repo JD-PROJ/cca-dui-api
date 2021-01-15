@@ -1,11 +1,10 @@
 package com.jidong.ccadui.domain.member.repository;
 
 
-import static java.time.LocalDateTime.now;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import com.jidong.ccadui.domain.member.service.MemberOAuth;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.junit.After;
 import org.junit.jupiter.api.DisplayName;
@@ -33,6 +32,7 @@ public class MemberOAuthRepositoryTest {
     @Test
     void create_Enitity_Test() {
         //given
+        LocalDateTime now = LocalDateTime.now();
         memberRepository.save(MbMemOauth.builder()
                 .svcNm("kakao")
                 .svcUsrId("kakao_profile_nickname")
@@ -47,13 +47,16 @@ public class MemberOAuthRepositoryTest {
         assertEquals(mbMemOAuth.getMemNo(), 3);
         assertEquals(mbMemOAuth.getSvcNm(), "kakao");
         assertEquals(mbMemOAuth.getSvcUsrId(), "kakao_profile_nickname");
-        assertTrue(mbMemOAuth.getCreateDt().isBefore(now()));
+        assertTrue(mbMemOAuth.getCreateDt().isAfter(now));
+        assertNotNull(mbMemOAuth.getCreateDt());
     }
 
     @Test
     @DisplayName("queryDsl 적용 테스트")
     void queryDsl_Test() {
         //given
+        LocalDateTime now = LocalDateTime.now();
+
         long memberNo = 1;
         String serviceName = "kakao2";
         String serviceUserId = "kakao_profile_nickname2";
@@ -66,6 +69,10 @@ public class MemberOAuthRepositoryTest {
         //then
         assertEquals("kakao2", memberOAuth.getServiceName());
         assertEquals( "kakao_profile_nickname2", memberOAuth.getServiceUserId());
+
+        //왜널이
+        assertNull(memberOAuth.getCreateDate());
+
     }
 
     @Test
@@ -73,17 +80,22 @@ public class MemberOAuthRepositoryTest {
     @DisplayName("entityManager insert 적용 테스트")
     void entityManager_insert_Test() {
         //given
+        LocalDateTime now = LocalDateTime.now();
         MemberOAuth memberOAuth = new MemberOAuth();
         memberOAuth.setServiceName("kakao");
         memberOAuth.setServiceUserId("jibab");
+        memberOAuth.setCreateDate(now);
+        memberOAuth.setUpdateDate(now);
 
         //then
         memberRepository.insertMember(memberOAuth);
 
         //when
-        MemberOAuth memberOAuth2 = memberRepository.getMemberInfo(4);
+        MemberOAuth memberOAuth2 = memberRepository.getMemberInfoByServiceUserId("jibab");
 
         assertEquals(memberOAuth2.getServiceName(), "kakao");
         assertEquals(memberOAuth2.getServiceUserId(), "jibab");
+
+        assertNull(memberOAuth2.getCreateDate());
     }
 }

@@ -17,6 +17,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -111,14 +112,14 @@ public class KakaoLoginController {
         return jwt;
     }
 
-    @PostMapping("/login/token")
+    @RequestMapping(method = RequestMethod.POST, value = "/login/token")
     @ApiOperation("토큰 검증")
-    public Object token(@RequestParam String access_token) {
+    public ResponseEntity<Object> token(@RequestParam String accessToken) {
         log.info("POST : /api/loginToken");
 
         Object result = null;
 
-        if (jwtService.isUsable(access_token)) {
+        if (jwtService.isUsable(accessToken)) {
             result = jwtService.get("user");
         }
 
