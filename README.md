@@ -4,6 +4,8 @@
 
 - JAVA : 1.8
 - SpringBoot 2.3.1.RELEASE
+- Gradle 5.1.1
+
 - AWS EC2
 - AWS RDS (mySql)
 - CI/CD : AWS S3, CodeDeploy, TravisCI
