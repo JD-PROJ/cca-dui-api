@@ -22,7 +22,10 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
                         mbMemOauth.memNo,
                         mbMemOauth.svcNm,
                         mbMemOauth.svcUsrId,
-                        mbMemOauth.svcUsrNm))
+                        mbMemOauth.svcUsrNm,
+                        mbMemOauth.svcUsrNm,
+                        mbMemOauth.updateDt,
+                        mbMemOauth.createDt))
                 .from(mbMemOauth)
                 .where(mbMemOauth.memNo.eq(memberNo))
                 .fetchOne();
@@ -35,7 +38,9 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
                         mbMemOauth.memNo,
                         mbMemOauth.svcNm,
                         mbMemOauth.svcUsrId,
-                        mbMemOauth.svcUsrNm))
+                        mbMemOauth.svcUsrNm,
+                        mbMemOauth.updateDt,
+                        mbMemOauth.createDt))
                 .from(mbMemOauth)
                 .where(mbMemOauth.svcUsrId.eq(serviceUserId))
                 .fetchOne();
@@ -53,5 +58,4 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
         entityManager.flush();
         entityManager.clear();
     }
-
 }

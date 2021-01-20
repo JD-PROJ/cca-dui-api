@@ -4,6 +4,7 @@ import com.jidong.ccadui.controller.api.dto.KakaoAPIResultVO;
 import com.jidong.ccadui.controller.api.dto.KakaoLoginResultEnum;
 import com.jidong.ccadui.controller.api.dto.KakaoLoginResultV1;
 import com.jidong.ccadui.domain.login.service.KakaoLoginService;
+import com.jidong.ccadui.domain.member.repository.MemberRepository;
 import com.jidong.ccadui.domain.member.service.MemberOAuth;
 import com.jidong.ccadui.domain.member.service.MemberService;
 import com.jidong.ccadui.jwt.JwtService;
@@ -43,6 +44,9 @@ public class KakaoLoginController {
 
     @NotNull
     private final KakaoLoginService kakaoLoginService;
+
+    @NotNull
+    private final MemberRepository memberRepository;
 
     @RequestMapping(method = RequestMethod.GET, value = "/kakao/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation("카카오 로그인을 위한 JWT Token 생성")

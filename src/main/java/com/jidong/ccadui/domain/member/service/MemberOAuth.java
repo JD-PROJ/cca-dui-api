@@ -15,10 +15,13 @@ public class MemberOAuth {
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
 
-    public MemberOAuth(long memberNo, String serviceName, String serviceUserId, String serviceUserName) {
+    public MemberOAuth(long memberNo, String serviceName, String serviceUserId, String serviceUserName,
+                       LocalDateTime updateDate, LocalDateTime createDate) {
         this.memberNo = memberNo;
         this.serviceName = serviceName;
         this.serviceUserId = serviceUserId;
         this.serviceUserName = serviceUserName;
+        this.updateDate = updateDate;
+        this.createDate = createDate;
     }
 }

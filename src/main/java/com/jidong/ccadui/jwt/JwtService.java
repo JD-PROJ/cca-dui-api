@@ -30,11 +30,11 @@ public class JwtService {
 
       		String jwt = Jwts.builder()
                              .setHeaderParam("typ", "JWT")
-                            .setHeaderParam("regDate", System.currentTimeMillis())
-      				        .setSubject(subject)
-                            .setExpiration(expireTime)
-                            .claim(key, data)
-      				        .signWith(SignatureAlgorithm.HS256, this.generateKey()).compact();
+                             .setHeaderParam("regDate", System.currentTimeMillis())
+      				         .setSubject(subject)
+                             .setExpiration(expireTime)
+                             .claim(key, data)
+      				         .signWith(SignatureAlgorithm.HS256, this.generateKey()).compact();
       		return jwt;
       	}
 

@@ -49,6 +49,9 @@ public class MemberOAuthRepositoryTest {
         assertEquals(mbMemOAuth.getSvcUsrId(), "kakao_profile_nickname");
         assertTrue(mbMemOAuth.getCreateDt().isAfter(now));
         assertNotNull(mbMemOAuth.getCreateDt());
+
+        System.out.println("createDt : " + mbMemOAuth.getCreateDt());
+        System.out.println("updateDt : " + mbMemOAuth.getUpdateDt());
     }
 
     @Test
@@ -96,6 +99,8 @@ public class MemberOAuthRepositoryTest {
         assertEquals(memberOAuth2.getServiceName(), "kakao");
         assertEquals(memberOAuth2.getServiceUserId(), "jibab");
 
-        assertNull(memberOAuth2.getCreateDate());
+        assertNotNull(memberOAuth2.getCreateDate());
+        System.out.println("createDt : " + memberOAuth2.getCreateDate());
+        System.out.println("updateDt : " + memberOAuth2.getUpdateDate());
     }
 }
