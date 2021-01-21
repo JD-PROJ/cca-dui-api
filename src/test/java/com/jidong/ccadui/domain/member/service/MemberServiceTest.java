@@ -3,14 +3,8 @@ package com.jidong.ccadui.domain.member.service;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import com.jidong.ccadui.domain.Foo;
-import com.jidong.ccadui.domain.Person;
 import com.jidong.ccadui.domain.member.repository.MbMemOauth;
 import com.jidong.ccadui.domain.member.repository.MemberRepository;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
