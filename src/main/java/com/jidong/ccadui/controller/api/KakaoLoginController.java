@@ -118,7 +118,7 @@ public class KakaoLoginController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/login/token")
     @ApiOperation("토큰 검증")
-    public ResponseEntity<Object> token(@RequestParam String accessToken) {
+    public ResponseEntity<Object> vaildJwtToken(@RequestParam String accessToken) {
         log.info("POST : /api/loginToken");
 
         Object result = null;

@@ -23,7 +23,6 @@ public class MemberRepositoryImpl implements MemberRepositoryCustom{
                         mbMemOauth.svcNm,
                         mbMemOauth.svcUsrId,
                         mbMemOauth.svcUsrNm,
-                        mbMemOauth.svcUsrNm,
                         mbMemOauth.updateDt,
                         mbMemOauth.createDt))
                 .from(mbMemOauth)

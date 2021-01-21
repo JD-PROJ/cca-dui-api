@@ -34,6 +34,7 @@ class MemberServiceTest {
 
         assertEquals(memberOAuth.getServiceName(), "SERVICE_TEST");
         assertEquals(memberOAuth.getServiceUserId(), "kakao_id2");
+        assertNotNull(memberOAuth.getCreateDate());
     }
 
     @Test

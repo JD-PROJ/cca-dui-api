@@ -2,7 +2,6 @@ package com.jidong.ccadui.domain.member.service;
 
 import java.time.LocalDateTime;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Data
