@@ -21,21 +21,20 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 @RequiredArgsConstructor
 public class JwtService {
 
-//       @Value("${oauth.token.secretKey}")
-       private final String secretKey = "jibabDongdongCcaduiJwtSecretKey";
+       @Value("${oauth.token.secretKey}")
+       private String secretKey;
 
        public <T> String create(String key, T data, String subject) throws Exception{
       		Date expireTime = new Date();
       		expireTime.setTime(expireTime.getTime() + 1000 * 60 * 60); // 1시간
 
-      		String jwt = Jwts.builder()
-                             .setHeaderParam("typ", "JWT")
-                             .setHeaderParam("regDate", System.currentTimeMillis())
-      				         .setSubject(subject)
-                             .setExpiration(expireTime)
-                             .claim(key, data)
-      				         .signWith(SignatureAlgorithm.HS256, this.generateKey()).compact();
-      		return jwt;
+      		return Jwts.builder()
+                         .setHeaderParam("typ", "JWT")
+                         .setHeaderParam("regDate", System.currentTimeMillis())
+                         .setSubject(subject)
+                         .setExpiration(expireTime)
+                         .claim(key, data)
+                         .signWith(SignatureAlgorithm.HS256, this.generateKey()).compact();
       	}
 
        private byte[] generateKey() {

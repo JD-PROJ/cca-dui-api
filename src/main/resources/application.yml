@@ -24,6 +24,10 @@ spring:
     console:
       enabled: true
 
+oauth:
+  token:
+    secretKey: amlqaWRvbmdKV1RzZWNyZXRrZXk=
+
 # 운영 환경
 ---
 spring.profiles: set1
