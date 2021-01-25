@@ -55,6 +55,7 @@ public class KakaoLoginController {
 
         KakaoLoginResultV1 kakaoLoginResultV1 = new KakaoLoginResultV1(KakaoLoginResultEnum.INTERNAL_SERVER_ERROR);
 
+        // kakao accessToken으로 카카오 api 호출
         KakaoAPIResultVO kakaoAPIResultVO = kakaoLoginService.callKakaoUserAPI(accessToken);
 
         if(KakaoLoginResultEnum.SUCCESS.equalsCode(kakaoAPIResultVO.getCode())) {
