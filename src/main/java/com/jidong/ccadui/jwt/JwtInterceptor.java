@@ -18,7 +18,7 @@
 //    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 //        final String token = request.getHeader(HEADER_AUTH);
 //
-//        if (token != null && jwtService.isUsable(token)) {
+//        if (token != null && jwtService.getTokenInfo(token)) {
 //            return true;
 //        } else {
 //            throw new UnauthorizedException();
