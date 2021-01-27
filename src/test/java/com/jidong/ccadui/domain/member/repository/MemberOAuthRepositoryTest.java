@@ -75,10 +75,6 @@ public class MemberOAuthRepositoryTest {
         //then
         assertEquals("kakao2", memberOAuth.getServiceName());
         assertEquals( "kakao_profile_nickname2", memberOAuth.getServiceUserId());
-// 대체뭘까왜널일까
-//        System.out.println("createDt : " + memberOAuth.getCreateDate());
-//        assertNotNull(memberOAuth.getCreateDate());
-
     }
 
     @Test
