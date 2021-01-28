@@ -13,6 +13,7 @@ import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import net.sf.json.JSONObject;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -29,8 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class KakaoLoginController {
     // 카카오 인증 및 유효성 검증 Controller
 
-    @NotNull
-    private final JwtService jwtService;
+    @Autowired
+    private JwtService jwtService;
 
     @NotNull
     private final MemberService memberService;
