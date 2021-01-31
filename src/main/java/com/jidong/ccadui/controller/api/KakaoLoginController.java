@@ -30,8 +30,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class KakaoLoginController {
     // 카카오 인증 및 유효성 검증 Controller
 
-    @Autowired
-    private JwtService jwtService;
+    @NotNull
+    private final JwtService jwtService;
 
     @NotNull
     private final MemberService memberService;
