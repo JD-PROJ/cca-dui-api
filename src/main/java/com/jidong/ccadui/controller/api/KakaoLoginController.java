@@ -38,7 +38,7 @@ public class KakaoLoginController {
     @NotNull
     private final KakaoLoginService kakaoLoginService;
 
-    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "/kakao/login", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @RequestMapping(method = {RequestMethod.GET, RequestMethod.POST}, value = "/login/kakao", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ApiOperation("인증을 위한 JWT Token 생성")
     public KakaoLoginResultV1 kakaoLogin(@RequestParam String accessToken) {
         // accessToken으로 JWT token 생성 및 전달
