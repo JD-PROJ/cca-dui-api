@@ -1,4 +1,4 @@
-package com.jidong.ccadui.jwt;
+package com.jidong.ccadui.domain.jwt;
 
 import com.jidong.ccadui.domain.member.service.MemberOAuth;
 import io.jsonwebtoken.Claims;
@@ -15,10 +15,12 @@ import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
+@Component
 @RequiredArgsConstructor
 public class JwtService {
 
@@ -87,7 +89,7 @@ public class JwtService {
             claims = Jwts.parser().setSigningKey(secretKey.getBytes("UTF-8")).parseClaimsJws(token);
             value = (LinkedHashMap<String, Object>) claims.getBody().get(key);
         } catch (ExpiredJwtException e) {
-            log.error("JWT Token Expried Error : " + token);
+            log.error("JWT Token Expired Error : " + token);
             return value;
         } catch (JwtException exception) {
             log.error("JWT Token Exception : " + token);

@@ -1,4 +1,4 @@
-//package com.jidong.ccadui.jwt;
+//package com.jidong.ccadui.domain.jwt;
 //
 //import com.jidong.ccadui.exception.UnauthorizedException;
 //import javax.servlet.http.HttpServletRequest;
