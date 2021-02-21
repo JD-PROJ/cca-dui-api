@@ -23,7 +23,7 @@ class MemberServiceTest {
         MemberOAuth memberOAuth = new MemberOAuth();
         memberOAuth.setServiceName("kakao");
         memberOAuth.setServiceUserId("123456");
-        memberOAuth.setServiceUserName("jibab");
+        memberOAuth.setServiceProfileId("jibab");
 
         //then
         memberService.insertMember(memberOAuth);

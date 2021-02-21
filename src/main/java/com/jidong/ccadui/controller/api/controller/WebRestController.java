@@ -1,4 +1,4 @@
-package com.jidong.ccadui.controller.api;
+package com.jidong.ccadui.controller.api.controller;
 
 import io.swagger.annotations.ApiOperation;
 import java.util.Arrays;

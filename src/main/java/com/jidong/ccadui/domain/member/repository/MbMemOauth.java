@@ -24,20 +24,27 @@ public class MbMemOauth extends BaseTimeEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long memNo;
 
-    @Column(name="SVC_NM")
-    private String svcNm;
+    @Column(name="SERVICE_NAME")
+    private String serviceName;
 
-    @Column(name="SVC_USER_ID")
-    private String svcUsrId;
+    @Column(name="SERVICE_USER_ID")
+    private String serviceUserId;
 
-    @Column(name="SVC_USER_NM")
-    private String svcUsrNm;
+    @Column(name="SERVICE_USER_EMAIL")
+    private String serviceUserEmail;
+
+    @Column(name="SERVICE_PROFILE_ID")
+    private String serviceProfileId;
+
+    @Column(name="ACCESS_TOCKEN")
+    private String accessToken;
 
     @Builder
-    public MbMemOauth(long memNo, String svcNm, String svcUsrId, String svcUsrNm) {
+    public MbMemOauth(long memNo, String serviceName, String serviceUserId, String serviceProfileId, String accessToken) {
         this.memNo = memNo;
-        this.svcNm = svcNm;
-        this.svcUsrId = svcUsrId;
-        this.svcUsrNm = svcUsrNm;
+        this.serviceName = serviceName;
+        this.serviceUserId = serviceUserId;
+        this.serviceProfileId = serviceProfileId;
+        this.accessToken = accessToken;
     }
 }

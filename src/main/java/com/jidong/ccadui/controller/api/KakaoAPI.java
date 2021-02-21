@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class KakaoAPI {
 
-
     public HttpResponse getKaKaoUserInfo(String accessToken) {
         // 카카오 userInfo 받아오기
         final String RequestUrl = "https://kapi.kakao.com/v2/user/me";

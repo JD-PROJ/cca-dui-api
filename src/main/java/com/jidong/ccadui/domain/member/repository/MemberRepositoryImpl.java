@@ -22,9 +22,10 @@ public class MemberRepositoryImpl implements MemberRepository {
         return queryFactory
                 .select(Projections.constructor(MemberOAuth.class,
                         mbMemOauth.memNo,
-                        mbMemOauth.svcNm,
-                        mbMemOauth.svcUsrId,
-                        mbMemOauth.svcUsrNm,
+                        mbMemOauth.serviceName,
+                        mbMemOauth.serviceUserId,
+                        mbMemOauth.serviceUserEmail,
+                        mbMemOauth.serviceProfileId,
                         mbMemOauth.updateDt,
                         mbMemOauth.createDt))
                 .from(mbMemOauth)
@@ -37,13 +38,14 @@ public class MemberRepositoryImpl implements MemberRepository {
         return queryFactory
                 .select(Projections.constructor(MemberOAuth.class,
                         mbMemOauth.memNo,
-                        mbMemOauth.svcNm,
-                        mbMemOauth.svcUsrId,
-                        mbMemOauth.svcUsrNm,
+                        mbMemOauth.serviceName,
+                        mbMemOauth.serviceUserId,
+                        mbMemOauth.serviceUserEmail,
+                        mbMemOauth.serviceProfileId,
                         mbMemOauth.updateDt,
                         mbMemOauth.createDt))
                 .from(mbMemOauth)
-                .where(mbMemOauth.svcUsrId.eq(serviceUserId))
+                .where(mbMemOauth.serviceUserId.eq(serviceUserId))
                 .fetchOne();
     }
 
@@ -51,8 +53,10 @@ public class MemberRepositoryImpl implements MemberRepository {
     public void insertMember(MemberOAuth memberOAuth) {
         MbMemOauth mbMemOAuth = MbMemOauth.builder()
                 .memNo(memberOAuth.getMemberNo())
-                .svcNm(memberOAuth.getServiceName())
-                .svcUsrId(memberOAuth.getServiceUserId())
+                .serviceName(memberOAuth.getServiceName())
+                .serviceUserId(memberOAuth.getServiceUserId())
+                .serviceProfileId(memberOAuth.getServiceProfileId())
+                .accessToken(memberOAuth.getAccessToken())
                 .build();
 
         entityManager.persist(mbMemOAuth);

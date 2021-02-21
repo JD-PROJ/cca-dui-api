@@ -1,4 +1,4 @@
-package com.jidong.ccadui.controller.api;
+package com.jidong.ccadui.controller.api.controller;
 
 import com.jidong.ccadui.controller.api.dto.KakaoAPIResultVO;
 import com.jidong.ccadui.controller.api.dto.KakaoLoginResultEnum;
@@ -53,7 +53,7 @@ public class KakaoLoginController {
             JSONObject jsonObject = kakaoAPIResultVO.getResult();
 
             // 카카오 회원 고유 ID
-            String serviceUserId = jsonObject.optString("id");
+            String kakaoUserId = jsonObject.optString("id");
 
             JSONObject kakaoAccount = jsonObject.optJSONObject("kakao_account");
             String nickname;
@@ -62,11 +62,11 @@ public class KakaoLoginController {
             if (kakaoAccount != null) {
                 nickname = kakaoAccount.optJSONObject("profile").optString("nickName");
             } else {
-                nickname = "ccadui" + serviceUserId;
+                nickname = "ccadui" + kakaoUserId;
             }
 
             // 3. 이미 회원인지 판별
-            MemberOAuth member = memberService.getMemberInfoByServiceUserId(serviceUserId);
+            MemberOAuth member = memberService.getMemberInfoByServiceUserId(kakaoUserId);
             String jwt;
 
             try {
@@ -74,7 +74,7 @@ public class KakaoLoginController {
                     MemberOAuth memberOAuth = new MemberOAuth();
 
                     memberOAuth.setServiceName("kakao");
-                    memberOAuth.setServiceUserId(serviceUserId);
+                    memberOAuth.setServiceUserId(kakaoUserId);
                     memberOAuth.setServiceName(nickname);
                     memberOAuth.setUpdateDate(LocalDateTime.now());
                     memberOAuth.setCreateDate(LocalDateTime.now());
@@ -89,6 +89,7 @@ public class KakaoLoginController {
                     jwt = createJwtToken(member);
                 }
             } catch (Exception e) {
+                log.error("JWT Token generate error : " + kakaoUserId);
                 return new KakaoLoginResultV1(KakaoLoginResultEnum.JWT_TOKEN_GENERATE_ERROR);
             }
 

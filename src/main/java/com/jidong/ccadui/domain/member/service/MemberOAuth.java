@@ -9,17 +9,19 @@ import lombok.RequiredArgsConstructor;
 public class MemberOAuth {
     private long memberNo;
     private String serviceName;
-    private String serviceUserId;
-    private String serviceUserName;
+    private String serviceUserId; // 서비스 고유 아이디
+    private String serviceProfileId; // 서비스 닉네임
+    private String accessToken;
     private LocalDateTime createDate;
     private LocalDateTime updateDate;
 
-    public MemberOAuth(long memberNo, String serviceName, String serviceUserId, String serviceUserName,
+    public MemberOAuth(long memberNo, String serviceName, String serviceUserId, String serviceProfileId, String accessToken,
                        LocalDateTime updateDate, LocalDateTime createDate) {
         this.memberNo = memberNo;
         this.serviceName = serviceName;
         this.serviceUserId = serviceUserId;
-        this.serviceUserName = serviceUserName;
+        this.serviceProfileId = serviceProfileId;
+        this.accessToken = accessToken;
         this.updateDate = updateDate;
         this.createDate = createDate;
     }

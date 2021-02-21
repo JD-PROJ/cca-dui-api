@@ -27,6 +27,8 @@ public class MemberOAuthRepositoryTest {
         MemberOAuth memberOAuth = new MemberOAuth();
         memberOAuth.setServiceName("kakao");
         memberOAuth.setServiceUserId("jibab");
+        memberOAuth.setServiceProfileId("jibabiiii");
+        memberOAuth.setAccessToken("aaa");
         memberOAuth.setCreateDate(now);
         memberOAuth.setUpdateDate(now);
 
