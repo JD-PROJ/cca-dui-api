@@ -1,6 +1,5 @@
 package com.jidong.ccadui.domain.member.service;
 
-import com.jidong.ccadui.domain.member.repository.MbMemOauth;
 import com.jidong.ccadui.domain.member.repository.MemberRepository;
 import javax.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;

@@ -39,6 +39,9 @@ public class MbMemOauth extends BaseTimeEntity implements Serializable {
     @Column(name="ACCESS_TOCKEN")
     private String accessToken;
 
+    @Column(name = "UPDATE_NO")
+    private String updateNo;
+
     @Builder
     public MbMemOauth(long memNo, String serviceName, String serviceUserId, String serviceProfileId, String accessToken) {
         this.memNo = memNo;

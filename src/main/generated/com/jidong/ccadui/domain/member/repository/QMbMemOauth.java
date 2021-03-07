@@ -39,6 +39,8 @@ public class QMbMemOauth extends EntityPathBase<MbMemOauth> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updateDt = _super.updateDt;
 
+    public final StringPath updateNo = createString("updateNo");
+
     public QMbMemOauth(String variable) {
         super(MbMemOauth.class, forVariable(variable));
     }

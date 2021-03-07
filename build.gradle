@@ -57,6 +57,7 @@ dependencies {
     compile 'org.hibernate.validator:hibernate-validator'
     compile 'net.sf.json-lib:json-lib:1.1:jdk15'
     implementation 'net.minidev:json-smart:2.2.1'
+    implementation("org.modelmapper:modelmapper:2.3.0")
 
     compile("com.querydsl:querydsl-jpa") // querydsl
     compile("com.querydsl:querydsl-apt") // querydsl

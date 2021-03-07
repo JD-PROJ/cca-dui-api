@@ -1,2 +1,5 @@
-insert into MB_MEM_OAUTH(mem_no, svc_nm, svc_user_id, update_dt, create_dt) values(1, 'testService', 'testNickname', now(), now());
-insert into MB_MEM_OAUTH(mem_no, svc_nm, svc_user_id, update_dt, create_dt) values(2, 'testService2', 'testNickname2', now(), now());
+insert into MB_MEM_OAUTH(MEM_NO, SERVICE_NAME, SERVICE_USER_ID, SERVICE_USER_EMAIL, SERVICE_PROFILE_ID, ACCESS_TOCKEN, UPDATE_NO, UPDATE_DATE, CREATE_NO, CREATE_DATE)
+values(1, 'KAKAO', 'kakaoServiceID', 'test@naver.com', 'testNickName', 'fZ_MNJOUENe_PRpfqbSqdavTOeUVsf397vy_4wo9dNoAAAF3RAndig', 1, now(), 1, now());
+
+insert into MB_MEM_OAUTH(MEM_NO, SERVICE_NAME, SERVICE_USER_ID, SERVICE_USER_EMAIL, SERVICE_PROFILE_ID, ACCESS_TOCKEN, UPDATE_NO, UPDATE_DATE, CREATE_NO, CREATE_DATE)
+values(2, 'KAKAO', 'kakaoServiceID2', 'test2@naver.com', 'testNickName2', 'fZ_MNJOUENe_PRpfqbSqdavTOeUVsf397vy_4wo9dNoAAAF3RBndig', 2, now(), 2, now());
