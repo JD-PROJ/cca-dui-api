@@ -37,6 +37,7 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
                 .join(calScheduleMem)
                 .on(calSchedule.scheduleNo.eq(calScheduleMem.scheduleNo))
                 .where(calScheduleMem.memberNo.eq(memberNo))
+                .groupBy(calSchedule.scheduleNo)
                 .fetch();
     }
 

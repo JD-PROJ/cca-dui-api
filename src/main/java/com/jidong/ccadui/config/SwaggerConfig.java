@@ -17,7 +17,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
 
         return new ApiInfoBuilder()
-                .title("Demo")
+                .title("Jijidong Ccadui")
                 .description("API EXAMPLE")
                 .build();
     }
