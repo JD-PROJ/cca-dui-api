@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.jidong.ccadui.domain.member.repository.MemberRepository;
+import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,5 +34,17 @@ class MemberServiceTest {
         assertEquals(memberOAuth2.getServiceName(), "kakao");
         assertEquals(memberOAuth2.getServiceUserId(), "123456");
         assertNotNull(memberOAuth2.getCreateDate());
+    }
+
+
+    @Test
+    void optional_test() {
+
+        Integer memberNo = null;
+        Integer or = 0;
+        Integer test = Optional.ofNullable(memberNo).orElseThrow(() -> new UnsupportedOperationException("testtest"));
+
+
+        assertEquals(0, test);
     }
 }

@@ -2,10 +2,10 @@ package com.jidong.ccadui.domain.calendar.service;
 
 import java.util.Date;
 import lombok.Data;
-import lombok.RequiredArgsConstructor;
 
 @Data
-public class Schedule {
+public class ScheduleDetail {
+
     private long scheduleNo;
     private String scheduleTitle;
     private long scheduleOwnerNo;
@@ -15,19 +15,21 @@ public class Schedule {
     private Date endDate;
     private Date confirmDate;
     private long createNo;
+    private Date nonAvailableDate;
 
-    public Schedule() {
+    public ScheduleDetail() {
 
     }
 
-    public Schedule(long scheduleNo,
-                    String scheduleTitle,
-                    long scheduleOwnerNo,
-                    String scheduleStatus,
-                    Date beginDate,
-                    Date endDate,
-                    Date confirmDate,
-                    long createNo) {
+    public ScheduleDetail(long scheduleNo,
+                          String scheduleTitle,
+                          long scheduleOwnerNo,
+                          String scheduleStatus,
+                          Date beginDate,
+                          Date endDate,
+                          Date confirmDate,
+                          long createNo,
+                          Date nonAvailableDate) {
         this.scheduleNo = scheduleNo;
         this.scheduleTitle = scheduleTitle;
         this.scheduleStatus = scheduleStatus;
@@ -36,6 +38,7 @@ public class Schedule {
         this.endDate = endDate;
         this.confirmDate = confirmDate;
         this.createNo = createNo;
+        this.nonAvailableDate = nonAvailableDate;
     }
 
     public boolean setIsOwner() {

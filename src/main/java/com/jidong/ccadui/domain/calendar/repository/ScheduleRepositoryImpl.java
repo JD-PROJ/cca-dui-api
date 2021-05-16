@@ -4,9 +4,11 @@ import static com.jidong.ccadui.domain.calendar.repository.QCalSchedule.calSched
 import static com.jidong.ccadui.domain.calendar.repository.QCalScheduleMem.calScheduleMem;
 
 import com.jidong.ccadui.domain.calendar.service.Schedule;
+import com.jidong.ccadui.domain.calendar.service.ScheduleDetail;
 import com.querydsl.core.types.Projections;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import java.util.List;
+import java.util.Optional;
 import javax.persistence.EntityManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -36,6 +38,27 @@ public class ScheduleRepositoryImpl implements ScheduleRepository {
                 .join(calScheduleMem)
                 .on(calSchedule.scheduleNo.eq(calScheduleMem.scheduleNo))
                 .where(calScheduleMem.memberNo.eq(memberNo))
+                .fetch();
+    }
+
+    @Override
+    public List<ScheduleDetail> getScheduleDetail(long scheduleNo) {
+        return queryFactory
+                .select(Projections.constructor(ScheduleDetail.class,
+                        calSchedule.scheduleNo,
+                        calSchedule.scheduleTitle,
+                        calSchedule.scheduleOwnerNo,
+                        calSchedule.scheduleStatus,
+                        calSchedule.beginDate,
+                        calSchedule.endDate,
+                        calSchedule.confirmDate,
+                        calSchedule.createNo,
+                        calScheduleMem.nonAvailableTime
+                ))
+                .from(calSchedule)
+                .join(calScheduleMem)
+                .on(calSchedule.scheduleNo.eq(calScheduleMem.scheduleNo))
+                .where(calSchedule.scheduleNo.eq(scheduleNo))
                 .fetch();
     }
 

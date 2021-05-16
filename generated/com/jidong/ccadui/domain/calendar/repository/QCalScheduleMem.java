@@ -26,11 +26,11 @@ public class QCalScheduleMem extends EntityPathBase<CalScheduleMem> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> createDt = _super.createDt;
 
-    public final StringPath createNo = createString("createNo");
+    public final NumberPath<Long> createNo = createNumber("createNo", Long.class);
 
     public final NumberPath<Long> memberNo = createNumber("memberNo", Long.class);
 
-    public final DateTimePath<java.time.LocalDateTime> nonAvailableTime = createDateTime("nonAvailableTime", java.time.LocalDateTime.class);
+    public final DateTimePath<java.util.Date> nonAvailableTime = createDateTime("nonAvailableTime", java.util.Date.class);
 
     public final NumberPath<Long> scheduleNo = createNumber("scheduleNo", Long.class);
 
@@ -39,7 +39,7 @@ public class QCalScheduleMem extends EntityPathBase<CalScheduleMem> {
     //inherited
     public final DateTimePath<java.time.LocalDateTime> updateDt = _super.updateDt;
 
-    public final StringPath updateNo = createString("updateNo");
+    public final NumberPath<Long> updateNo = createNumber("updateNo", Long.class);
 
     public QCalScheduleMem(String variable) {
         super(CalScheduleMem.class, forVariable(variable));

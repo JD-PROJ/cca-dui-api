@@ -25,4 +25,8 @@ public class ScheduleV1 {
 
     @ApiModelProperty(notes = "종료일자")
     private Date endDate;
+
+    @ApiModelProperty(notes = "확정일자")
+    private Date confirmDate;
+
 }
