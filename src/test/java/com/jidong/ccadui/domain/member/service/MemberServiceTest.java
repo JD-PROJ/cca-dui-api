@@ -35,16 +35,4 @@ class MemberServiceTest {
         assertEquals(memberOAuth2.getServiceUserId(), "123456");
         assertNotNull(memberOAuth2.getCreateDate());
     }
-
-
-    @Test
-    void optional_test() {
-
-        Integer memberNo = null;
-        Integer or = 0;
-        Integer test = Optional.ofNullable(memberNo).orElseThrow(() -> new UnsupportedOperationException("testtest"));
-
-
-        assertEquals(0, test);
-    }
 }
